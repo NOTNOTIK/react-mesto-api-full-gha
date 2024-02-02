@@ -1,0 +1,56 @@
+.popup__submit {
+  background-color: black;
+  font-family: "Inter", serif, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #ffffff;
+  height: 50px;
+  width: calc(100% - 44px);
+  border-radius: 2px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  margin-top: 18px;
+  margin: 0px 22px 25px;
+}
+.popup__submit:hover {
+  opacity: 0.8;
+}
+.popup__submit_disabled{
+ background-color: white;
+ border: 1px solid grey;
+ color: grey;
+}
+@media screen and (max-width: 720px) {
+  .popup__submit {
+    height: 46px;
+    margin: 0px 22px 25px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+/*<div className="popup popup_type_del">
+        <div className="popup__container">
+          <h2 className="popup__title">Вы уверены?</h2>
+          <form
+            className="popup__form"
+            name="popup_form_del"
+            method="get"
+            noValidate=""
+          >
+            <fieldset className="popup__set">
+              <label>
+                <span className="error" id="del-error" />
+              </label>
+              <button type="submit" className="popup__submit" name="submitDel">
+                Удалить
+              </button>
+            </fieldset>
+          </form>
+          <button type="button" className="popup__close" id="closeDel" />
+        </div>
+      </div>*/

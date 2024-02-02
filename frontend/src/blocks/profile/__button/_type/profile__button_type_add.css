@@ -1,0 +1,21 @@
+.profile__button_type_add {
+    width: 150px;
+    height: 50px;
+    border: 2px solid #ffffff;
+    border-radius: 2px;
+    cursor: pointer;
+    background: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .profile__button_type_add:hover {
+    opacity: 0.6;
+    transition: 0.3s ease-out;
+  }
+  @media screen and (max-width: 720px) {
+    .profile__button_type_add {
+      width: 100%;
+      transition: 0.5s ease;
+    }
+  }
+  

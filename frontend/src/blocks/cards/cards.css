@@ -1,0 +1,14 @@
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
+    column-gap: 17px;
+    row-gap: 20px;
+    color: white;
+    margin: 51px auto 0px;
+  }
+  @media screen and (max-width: 1000px) {
+    .cards {
+      margin: 36px 19px 0px;
+    }
+  }
+  

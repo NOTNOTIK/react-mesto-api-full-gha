@@ -1,0 +1,9 @@
+.image_type_edit{
+    margin: 0 auto;
+    display: flex;
+}
+@media screen and (max-width:720px) {
+    .image_type_edit{
+        width: 8px;
+    }
+}

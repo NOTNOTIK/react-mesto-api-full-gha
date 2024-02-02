@@ -1,0 +1,16 @@
+.cards__del {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    top: 20px;
+    right: 20px;
+    height: 19px;
+    padding: 0;
+    width: 18px;
+    background-image: url(../../../images/Group.svg);
+    position:absolute;
+}
+
+.cards__del:hover{
+    opacity: 0.6;
+}

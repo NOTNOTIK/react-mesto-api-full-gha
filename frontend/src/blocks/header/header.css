@@ -1,0 +1,31 @@
+.header {
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  margin-top: 45px;
+  padding-bottom: 41px;
+  display: flex;
+  justify-content: space-between;
+}
+.header__log{
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.header__mail{
+  color: white;
+  font-family: 'Inter';
+  font-size: 18px;
+}
+.header__cabinet{
+  font-family: 'Inter';
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 720px) {
+  .header {
+    margin-top: 28px;
+    padding-bottom: 31px;
+  }
+}

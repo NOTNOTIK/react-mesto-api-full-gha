@@ -1,0 +1,8 @@
+.cards__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 25px 21px 27px;
+  text-align: start;
+}
