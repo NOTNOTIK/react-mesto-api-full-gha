@@ -49,6 +49,6 @@ app.use((err, req, res, next) => {
   });
   next();
 });
-app.listen(3001, () => {
-  console.log(`listening on port ${3001}`);
+app.listen(3000, () => {
+  console.log(`listening on port ${3000}`);
 });

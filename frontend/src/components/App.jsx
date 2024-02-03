@@ -62,10 +62,10 @@ function App() {
   };
 
   function handleCheckToken() {
-    const jwt = localStorage.getItem("jwt");
+    const token = localStorage.getItem("jwt");
     if (localStorage.getItem("jwt")) {
       authApi
-        .checkToken(jwt)
+        .checkToken(token)
         .then((res) => {
           setUserMail(res.data.email);
           setLoggedIn(true);

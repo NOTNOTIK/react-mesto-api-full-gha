@@ -1,6 +1,7 @@
 class Api {
-  constructor(options) {
-    this._url = options.url;
+  constructor({ url, headers }) {
+    this._url = url;
+    this._headers = headers;
   }
   _getResponse(response) {
     if (response.ok) {
@@ -28,8 +29,8 @@ class Api {
     const token = localStorage.getItem("jwt");
     return fetch(`${this._url}/users/me`, {
       headers: {
-        "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
       method: "PATCH",
       body: JSON.stringify(data),
@@ -39,8 +40,8 @@ class Api {
     const token = localStorage.getItem("jwt");
     return fetch(`${this._url}/users/me/avatar`, {
       headers: {
-        "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
       method: "PATCH",
       body: JSON.stringify(data),
@@ -50,8 +51,8 @@ class Api {
     const token = localStorage.getItem("jwt");
     return fetch(`${this._url}/cards`, {
       headers: {
-        "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
       method: "POST",
       body: JSON.stringify(data),
@@ -88,7 +89,7 @@ class Api {
 }
 
 const api = new Api({
-  url: "https://api.ikorka01.nomoredomainsmonster.ru",
+  url: "http://localhost:3000",
 });
 
 export default api;
