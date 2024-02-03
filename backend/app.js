@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const app = express();
 const ERROR_CODE = 400;
@@ -23,6 +24,7 @@ const {
 } = require("./middlewares/validation.js");
 const { login, createUser } = require("./controllers/users");
 mongoose.connect("mongodb://127.0.0.1:27017/mestodb");
+app.use(cors());
 app.use(requestLogger);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -47,6 +49,6 @@ app.use((err, req, res, next) => {
   });
   next();
 });
-app.listen(3000, () => {
-  console.log(`listening on port ${3000}`);
+app.listen(3001, () => {
+  console.log(`listening on port ${3001}`);
 });

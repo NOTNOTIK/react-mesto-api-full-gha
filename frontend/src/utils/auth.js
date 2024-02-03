@@ -1,6 +1,7 @@
 class Auth {
-  constructor({ url }) {
-    this._url = url;
+  constructor(options) {
+    this._url = options.url;
+    this._headers = options.headers;
   }
 
   _checkRes(res) {
@@ -13,9 +14,7 @@ class Auth {
   register(email, password) {
     return fetch(`${this._url}/signup`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({ email, password }),
     }).then(this._checkRes);
   }
@@ -23,24 +22,25 @@ class Auth {
   authorize(email, password) {
     return fetch(`${this._url}/signin`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({ email, password }),
     }).then(this._checkRes);
   }
 
-  checkToken(jwt) {
+  checkToken(token) {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${jwt}`,
+        Authorization: `Bearer ${token}`,
       },
     }).then(this._checkRes);
   }
 }
 
 export const authApi = new Auth({
-  url: "https://auth.nomoreparties.co",
+  url: "https://api.ikorka01.nomoredomainsmonster.ru",
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
