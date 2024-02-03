@@ -49,6 +49,7 @@ function App() {
       .catch((err) => {
         console.log(err);
         setIsInfoTooltipOpen(true);
+        localStorage.removeItem("jwt");
         setInfoTooltipText("Что-то пошло не так! Попробуйте ещё раз.");
         setInfoTooltipImage(error);
       });
@@ -62,10 +63,10 @@ function App() {
   };
 
   function handleCheckToken() {
-    const token = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem("jwt");
     if (localStorage.getItem("jwt")) {
       authApi
-        .checkToken(token)
+        .checkToken(jwt)
         .then((res) => {
           setUserMail(res.data.email);
           setLoggedIn(true);

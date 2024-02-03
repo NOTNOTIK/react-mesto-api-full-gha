@@ -2,19 +2,29 @@ import edit from "../images/VectorAvatar.png";
 import add from "../images/add.svg";
 import React from "react";
 import Card from "./Card.js";
-import { currentUserContext } from '../contexts/CurrentUserContext';
+import { currentUserContext } from "../contexts/CurrentUserContext";
 import { useContext } from "react";
-export default function Main({onEditAvatar, onEditProfile, onAddPlace, cards, onCardClick,onCardLike, onCardDelete }) {
- 
-  
+export default function Main({
+  onEditAvatar,
+  onEditProfile,
+  onAddPlace,
+  cards,
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+}) {
   const userContext = useContext(currentUserContext);
- 
+
   return (
     <main className="main">
       <section className="profile">
         <div className="profile__card">
           <button className="avatar" onClick={onEditAvatar}>
-            <img src={userContext.avatar} alt={userContext.name} className="profile__avatar" />
+            <img
+              src={userContext.avatar}
+              alt={userContext.name}
+              className="profile__avatar"
+            />
           </button>
           <div className="profile__info">
             <div className="profile__name">
@@ -41,7 +51,13 @@ export default function Main({onEditAvatar, onEditProfile, onAddPlace, cards, on
       <section className="cards">
         {cards.map((card) => {
           return (
-            <Card card={card} key={card._id} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete}/>
+            <Card
+              card={card}
+              key={card._id}
+              onCardClick={onCardClick}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
+            />
           );
         })}
       </section>

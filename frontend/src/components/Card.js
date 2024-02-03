@@ -1,5 +1,5 @@
 import React from "react";
-import { currentUserContext } from '../contexts/CurrentUserContext.js';
+import { currentUserContext } from "../contexts/CurrentUserContext.js";
 
 export default function Card(props) {
   function handleClick() {
@@ -7,23 +7,29 @@ export default function Card(props) {
   }
   function handleLikeClick() {
     props.onCardLike(props.card);
-    
   }
   function handleDeleteClick() {
     props.onCardDelete(props.card);
   }
   const userContext = React.useContext(currentUserContext);
-  
-  const isOwn = userContext._id === props.card.owner._id;
 
-  const isLiked = props.card.likes.some(i => i._id === userContext._id);
-  const cardLikeButtonClassName = ( 
-    `cards__like-button ${isLiked ? 'cards__like-button_active' : ''}` 
-  );
-  
+  const isOwn = userContext.id === props.card.owner.id;
+
+  const isLiked = props.card.likes.some((id) => id === userContext.id);
+  const cardLikeButtonClassName = `cards__like-button ${
+    isLiked ? "cards__like-button_active" : ""
+  }`;
+
   return (
     <div className="cards__item">
-      {isOwn && <button className="cards__del" type="button" name="buttonDelete"  onClick={handleDeleteClick} />} 
+      {isOwn && (
+        <button
+          className="cards__del"
+          type="button"
+          name="buttonDelete"
+          onClick={handleDeleteClick}
+        />
+      )}
       <img
         className="cards__img"
         src={props.card.link}
@@ -33,11 +39,14 @@ export default function Card(props) {
       <span className="cards__info">
         <h2 className="cards__title">{props.card.name}</h2>
         <span>
-          <button className={cardLikeButtonClassName} onClick={handleLikeClick} type="button"></button>
-          <div className="cards__like-number">{props.card.likes.length}</div>
+          <button
+            className={cardLikeButtonClassName}
+            onClick={handleLikeClick}
+            type="button"
+          ></button>
+          <div className="cards__like-number">{props.card.likes?.length}</div>
         </span>
       </span>
     </div>
   );
 }
-

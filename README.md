@@ -10,8 +10,10 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 158.160.80.1
 
-Frontend https://...
+Frontend https://ikorka01.nomoredomainsmonster.ru
 
-Backend https://...
+Backend https://api.ikorka01.nomoredomainsmonster.ru
+
+## помогите я не могу
