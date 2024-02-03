@@ -1,61 +1,61 @@
 @font-face {
-    src: url(../../fonts/fonts.css) format('woff');
-    font-family: 'Inter';
-  }
-  .register {
-    color: white;
-    display: flex;
-    font-family: 'Inter';
-    flex-direction: column;
-    justify-content: center;
-    width: 358px;
-    margin: 0 auto;
-  }
-  .register__welcome {
-    font-size: 24px;
-    font-family: 'Inter';
-    margin: 0 auto;
-    margin-top: 60px;
-  }
-  .register__form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 50px;
-  }
-  .register__form input {
-    all: unset;
-    border-bottom: 2px solid #CCCCCC;
-    height: 27px;
-    font-size: 14px;
-    font-family: 'Inter';
-  }
+  /*src: url(../../fonts/fonts.css) format('woff');*/
+  font-family: "Inter";
+}
+.register {
+  color: white;
+  display: flex;
+  font-family: "Inter";
+  flex-direction: column;
+  justify-content: center;
+  width: 358px;
+  margin: 0 auto;
+}
+.register__welcome {
+  font-size: 24px;
+  font-family: "Inter";
+  margin: 0 auto;
+  margin-top: 60px;
+}
+.register__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50px;
+}
+.register__form input {
+  all: unset;
+  border-bottom: 2px solid #cccccc;
+  height: 27px;
+  font-size: 14px;
+  font-family: "Inter";
+}
 
-  .register__form input[type="password"] {
-    margin-top: 30px;
-    }
-  .register__button-container {
+.register__form input[type="password"] {
+  margin-top: 30px;
+}
+.register__button-container {
   display: flex;
   justify-content: center;
   margin-top: 216px;
-  }
-  .register__link {
-    border: none;
-    width: 100%;
-   height: 50px;
-   font-size: 18px;
-   font-family: 'Inter';
-  }
-  .register__signin {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 32px;
-  }
-  .register__signin p {
-    margin-right: 12px;
-  }
-  .register__login-link {
-   text-decoration: none;
-   color: white;
-  }
+}
+.register__link {
+  border: none;
+  width: 100%;
+  height: 50px;
+  font-size: 18px;
+  font-family: "Inter";
+}
+.register__signin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+}
+.register__signin p {
+  margin-right: 12px;
+}
+.register__login-link {
+  text-decoration: none;
+  color: white;
+}

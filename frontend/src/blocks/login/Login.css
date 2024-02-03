@@ -1,60 +1,59 @@
 @font-face {
-    src: url(../../fonts/fonts.css) format('woff');
-    font-family: 'Inter';
-  }
-  .login {
-    color: white;
-    display: flex;
-    font-family: 'Roboto';
-    flex-direction: column;
-    justify-content: center;
-    width: 358px;
-    margin: 0 auto;
-  }
-  .login__welcome {
-    font-size: 24px;
-    font-family: 'Inter';
-    margin: 0 auto;
-    margin-top: 60px;
-  }
-  .login__form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 50px;
-  }
-  .login__form input {
-    all: unset;
-    border-bottom: 2px solid #CCCCCC;
-    height: 27px;
-    font-size: 14px;
-    font-family: 'Inter';
-  }
-  .login__form input[type="password"] {
+  /*src: url(../../fonts/fonts.css) format('woff');*/
+  font-family: "Inter";
+}
+.login {
+  color: white;
+  display: flex;
+  font-family: "Roboto";
+  flex-direction: column;
+  justify-content: center;
+  width: 358px;
+  margin: 0 auto;
+}
+.login__welcome {
+  font-size: 24px;
+  font-family: "Inter";
+  margin: 0 auto;
+  margin-top: 60px;
+}
+.login__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50px;
+}
+.login__form input {
+  all: unset;
+  border-bottom: 2px solid #cccccc;
+  height: 27px;
+  font-size: 14px;
+  font-family: "Inter";
+}
+.login__form input[type="password"] {
   margin-top: 30px;
-  }
-  .login__signup {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 32px;
-  }
-  .login__signup p {
-    margin-right: 12px;
-  }
-  .signup__link {
-    color: white;
-  }
-  .login__button-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 216px;
-  }
-  .login__link {
-    border: none;
-    width: 100%;
-   height: 50px;
-   font-size: 18px;
-   font-family: 'Inter';
-   
-  }
+}
+.login__signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 32px;
+}
+.login__signup p {
+  margin-right: 12px;
+}
+.signup__link {
+  color: white;
+}
+.login__button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 216px;
+}
+.login__link {
+  border: none;
+  width: 100%;
+  height: 50px;
+  font-size: 18px;
+  font-family: "Inter";
+}
