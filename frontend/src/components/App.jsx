@@ -49,7 +49,6 @@ function App() {
       .catch((err) => {
         console.log(err);
         setIsInfoTooltipOpen(true);
-        localStorage.removeItem("jwt");
         setInfoTooltipText("Что-то пошло не так! Попробуйте ещё раз.");
         setInfoTooltipImage(error);
       });

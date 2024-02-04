@@ -43,6 +43,6 @@ class Auth {
 }
 
 export const authApi = new Auth({
-  url: "http://localhost:3000",
+  url: "https://api.ikorka01.nomoredomainsmonster.ru",
 });
 //https://auth.nomoreparties.co

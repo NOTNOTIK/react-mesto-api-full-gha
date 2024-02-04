@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const app = express();
 const ERROR_CODE = 400;
@@ -25,10 +26,16 @@ const {
 const { login, createUser } = require("./controllers/users");
 mongoose.connect("mongodb://127.0.0.1:27017/mestodb");
 app.use(cors());
+app.use(helmet());
 app.use(requestLogger);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/crash-test", () => {
+  setTimeout(() => {
+    throw new Error("Сервер сейчас упадёт");
+  }, 0);
+});
 app.post("/signin", validationLogin, login);
 app.post("/signup", validationCreateUser, createUser);
 

@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const { NODE_ENV, JWT_SECRET } = process.env;
+
 const NotFoundError = require("../errors/NotFoundError.js"); // 404
 const BadRequestError = require("../errors/BadRequestError.js"); // 400
 const ConflictError = require("../errors/ConflictError.js"); // 409
@@ -61,7 +62,9 @@ module.exports.createUser = (req, res, next) => {
       })
     )
     .then((user) => {
-      return res.status(OK).json(user);
+      return res
+        .status(OK)
+        .json(user.name, user.about, user.avatar, user.email);
     })
     .catch((err) => {
       if (err.code === 11000) {
@@ -123,16 +126,16 @@ module.exports.login = async (req, res, next) => {
     if (!matched) {
       return next(new AuthError("NotAuthenticate"));
     }
-
+    const token = jwt.sign(
+      { _id: userAdmin._id },
+      NODE_ENV === "production" ? JWT_SECRET : "super-strong-secret",
+      {
+        expiresIn: "7d",
+      }
+    );
     return res.status(200).send({
       data: { email: userAdmin.email, id: userAdmin._id },
-      token: jwt.sign(
-        { _id: userAdmin._id },
-        NODE_ENV === "production" ? JWT_SECRET : "super-strong-secret",
-        {
-          expiresIn: "7d",
-        }
-      ),
+      token,
     });
   } catch (err) {
     return next(err);
