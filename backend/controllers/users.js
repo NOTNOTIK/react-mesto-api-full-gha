@@ -18,21 +18,19 @@ module.exports.getUsers = async (req, res, next) => {
 };
 
 module.exports.getUserById = (req, res, next) => {
-  User.findById(req.params.id)
+  User.findById(req.user._id)
     .orFail()
     .then((user) => {
       return res.status(OK).send(user);
     })
     .catch((err) => {
-      if (err.name === "CastError") {
-        return next(new BadRequestError("ID not found"));
-      } else if (err.name === "DocumentNotFoundError") {
+      if (err.name === "DocumentNotFoundError") {
         return next(new NotFoundError("Пользователь с таким ID не найден"));
       }
       return next(err);
     });
 };
-module.exports.getOneUser = (req, res, next) => {
+/*module.exports.getOneUser = (req, res, next) => {
   User.findById(req.params._id)
     .orFail()
     .then((user) => {
@@ -47,6 +45,15 @@ module.exports.getOneUser = (req, res, next) => {
       }
       return next(err);
     });
+};*/
+module.exports.getOneUser = (req, res, next) => {
+  User.findById(req.user._id)
+    .then((user) => {
+      res.status(200).send({
+        user,
+      });
+    })
+    .catch(next);
 };
 module.exports.createUser = (req, res, next) => {
   const { email, password, name, about, avatar } = req.body;
@@ -76,14 +83,15 @@ module.exports.createUser = (req, res, next) => {
     });
 };
 module.exports.updateUser = (req, res, next) => {
-  const { name, about } = req.body
+  const owner = req.user._id;
+  const { name, about } = req.body;
+  User.findByIdAndUpdate(
+    owner,
+    { name, about },
+    { new: true, runValidators: true }
+  )
     .orFail()
     .then((user) => {
-      User.findByIdAndUpdate(
-        req.user._id,
-        { name, about },
-        { new: "true", runValidators: true }
-      );
       return res.status(OK).send(user);
     })
     .catch((err) => {
@@ -97,14 +105,14 @@ module.exports.updateUser = (req, res, next) => {
 };
 
 module.exports.updateUserAvatar = (req, res, next) => {
-  const { avatar } = req.body
+  const { avatar } = req.body;
+  User.findByIdAndUpdate(
+    req.user._id,
+    { avatar },
+    { new: "true", runValidators: true }
+  )
     .orFail()
     .then((user) => {
-      User.findByIdAndUpdate(
-        req.user._id,
-        { avatar },
-        { new: "true", runValidators: true }
-      );
       return res.status(OK).send(user);
     })
     .catch((err) => {
@@ -134,7 +142,8 @@ module.exports.login = async (req, res, next) => {
       }
     );
     return res.status(200).send({
-      data: { email: userAdmin.email, id: userAdmin._id },
+      email: userAdmin.email,
+      id: userAdmin._id,
       token,
     });
   } catch (err) {

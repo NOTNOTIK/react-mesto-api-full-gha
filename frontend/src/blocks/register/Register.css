@@ -1,7 +1,7 @@
-@font-face {
-  /*src: url(../../fonts/fonts.css) format('woff');*/
+/*@font-face {
+  src: url(../../vendor/fonts.css) format("woff");
   font-family: "Inter";
-}
+}*/
 .register {
   color: white;
   display: flex;

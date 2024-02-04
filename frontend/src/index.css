@@ -1,4 +1,10 @@
-/*@import url(./fonts/fonts.css);*/
+/*@import url(./vendor/fonts.css);*/
+/*ошибка если собирать проект со шрифтами:
+ Creating an optimized production build...
+Failed to compile.
+static/media/fonts.fc895074ea3194cc1151.css from Css Minimizer plugin
+Error: Unexpected '/'
+*/
 @import url(./blocks/page/page.css);
 
 @import url(./blocks/profile/__button/_type/profile__button_type_add.css);

@@ -15,24 +15,29 @@ module.exports.getCards = async (req, res, next) => {
     return next(err);
   }
 };
-module.exports.deleteCard = async (req, res, next) => {
-  try {
-    const card = await Card.findById(req.params.cardId);
+module.exports.deleteCard = (req, res, next) => {
+  Card.findById(req.params.cardId).then((card) => {
     if (!card) {
-      throw new NotFoundError("Карточка не найдена");
+      next(new NotFoundError("Карточка не найдена"));
+      return;
     }
     if (card.owner.toString() !== req.user._id) {
-      throw new UserError("Вы не можете удалить чужую карточку");
+      next(new UserError("Невозможно удалить чужую карточку"));
+      return;
     }
-    await Card.findByIdAndDelete(req.params.cardId);
-    return res.status(OK).json(card);
-  } catch (err) {
-    if (err.name === "CastError") {
-      return next(new BadRequestError("Некорректный ID для удаления карточки"));
-    }
-    return next(err);
-  }
+    card
+      .deleteOne()
+      .then(() => res.send({ message: "Карточка удалена" }))
+      .catch((err) => {
+        if (err.name === "CastError") {
+          next(new BadRequestError("Переданы некорректные данные"));
+        } else {
+          next(err);
+        }
+      });
+  });
 };
+
 module.exports.createCard = async (req, res, next) => {
   try {
     const { name, link } = req.body;
@@ -58,9 +63,7 @@ module.exports.likeCard = (req, res, next) => {
   )
     .orFail()
     .then((card) => {
-      res.status(200).send({
-        data: card,
-      });
+      res.status(200).send(card);
     })
     .catch((err) => {
       if (err.name === "CastError") {
@@ -79,18 +82,18 @@ module.exports.dislikeCard = (req, res, next) => {
     { $pull: { likes: userId } },
     { new: true }
   )
-    .orFail()
     .then((card) => {
-      res.status(200).send({
-        data: card,
-      });
+      if (!card) {
+        next(new NotFoundError("Карточка не найдена"));
+        return;
+      }
+      res.send(card);
     })
     .catch((err) => {
       if (err.name === "CastError") {
-        return next(new BadRequestError("Передан некорректный ID карточки"));
-      } else if (err.name === "DocumentNotFoundError") {
-        return next(new NotFoundError("Карточка с таким ID не найдена"));
+        next(new BadRequestError("Переданы некорректные данные"));
+      } else {
+        next(err);
       }
-      return next(err);
     });
 };

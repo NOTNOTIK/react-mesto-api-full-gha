@@ -27,7 +27,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [userMail, setUserMail] = useState("");
-
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [infoTooltipImage, setInfoTooltipImage] = useState("");
   const [infoTooltipText, setInfoTooltipText] = useState("");
@@ -39,10 +38,11 @@ function App() {
     authApi
       .authorize(email, password)
       .then((res) => {
-        if (res) {
+        if (res && res.token) {
           localStorage.setItem("jwt", res.token);
           setUserMail(email);
           setLoggedIn(true);
+          console.log(res);
           navigate("/", { replace: true });
         }
       })
@@ -60,14 +60,13 @@ function App() {
     navigate("/sign-in", { replace: true });
     setLoggedIn(false);
   };
-
   function handleCheckToken() {
-    const jwt = localStorage.getItem("jwt");
     if (localStorage.getItem("jwt")) {
+      const jwt = localStorage.getItem("jwt");
       authApi
         .checkToken(jwt)
         .then((res) => {
-          setUserMail(res.data.email);
+          setUserMail(res.email);
           setLoggedIn(true);
           navigate("/", { replace: true });
         })
@@ -78,7 +77,7 @@ function App() {
   }
   useEffect(() => {
     handleCheckToken();
-  }, []);
+  }, [loggedIn]);
 
   function handleRegistration(email, password) {
     authApi
@@ -136,13 +135,17 @@ function App() {
       ? api.deleteLike(card._id)
       : api.setLike(card._id);
 
-    checkLike.then((newCard) => {
-      setCards((cards) => cards.map((c) => (c._id === card._id ? newCard : c)));
-    });
-    checkLike.catch((err) => {
-      console.log(err);
-    });
+    checkLike
+      .then((newCard) => {
+        setCards((cards) =>
+          cards.map((c) => (c._id === card._id ? newCard : c))
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
   function handleCardDelete(card) {
     console.log("delte");
     api
@@ -154,11 +157,11 @@ function App() {
         console.log(err);
       });
   }
-
   function handleUpdateUser(data) {
     api
       .setUserApi(data)
       .then((res) => {
+        console.log(res);
         setCurrentUser(res);
         closeAllPopups();
       })
@@ -166,7 +169,6 @@ function App() {
         console.log(err);
       });
   }
-
   function handleUpdateAvatar(data) {
     api
       .setUserAvatar(data)
