@@ -20,9 +20,9 @@ module.exports = {
   OK,
   CREATED_OK,
 };
+app.use(cors());
 const { login, createUser } = require("./controllers/users");
 mongoose.connect("mongodb://127.0.0.1:27017/mestodb");
-app.use(cors());
 app.use(helmet());
 app.use(requestLogger);
 app.use(bodyParser.json());
