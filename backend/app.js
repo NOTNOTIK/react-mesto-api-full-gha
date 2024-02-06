@@ -28,21 +28,6 @@ app.use(requestLogger);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const allowedCors = [
-  "https://ikorka01.nomoredomainsmonster.ru",
-  "https://api.ikorka01.nomoredomainsmonster.ru",
-  "localhost:3001",
-];
-
-app.use(function (req, res, next) {
-  const { origin } = req.headers;
-  if (allowedCors.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", "signup");
-  }
-
-  next();
-});
-
 app.get("/crash-test", () => {
   setTimeout(() => {
     throw new Error("Сервер сейчас упадёт");
@@ -91,6 +76,6 @@ app.use((err, req, res, next) => {
   });
   next();
 });
-app.listen(3000, () => {
-  console.log(`listening on port ${3000}`);
+app.listen(3002, () => {
+  console.log(`listening on port ${3002}`);
 });
