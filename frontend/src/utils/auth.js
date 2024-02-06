@@ -49,6 +49,6 @@ class Auth {
 }
 
 export const authApi = new Auth({
-  url: "https://api.ikorka01.nomoredomainsmonster.ru",
+  url: "https://ikorka01.nomoredomainsmonster.ru",
 });
 //https://auth.nomoreparties.co

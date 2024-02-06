@@ -23,25 +23,14 @@ module.exports = {
 app.use(cors());
 const { login, createUser } = require("./controllers/users");
 mongoose.connect("mongodb://127.0.0.1:27017/mestodb");
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: false,
+  })
+);
 app.use(requestLogger);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-const allowedCors = [
-  "https://ikorka01.nomoredomainsmonster.ru",
-  "https://api.ikorka01.nomoredomainsmonster.ru",
-  "localhost:3001",
-];
-
-app.use(function (req, res, next) {
-  const { origin } = req.headers;
-  if (allowedCors.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", "signup");
-  }
-
-  next();
-});
 
 app.get("/crash-test", () => {
   setTimeout(() => {
