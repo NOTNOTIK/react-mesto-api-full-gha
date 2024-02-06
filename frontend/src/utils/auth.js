@@ -19,7 +19,6 @@ class Auth {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      mode: "no-cors",
       body: JSON.stringify({ email, password }),
     }).then(this._checkRes);
   }
@@ -31,7 +30,6 @@ class Auth {
         "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
       },
-      mode: "no-cors",
       body: JSON.stringify({ email, password }),
     }).then(this._checkRes);
   }
@@ -49,6 +47,6 @@ class Auth {
 }
 
 export const authApi = new Auth({
-  url: "https://ikorka01.nomoredomainsmonster.ru",
+  url: "http://localhost:3000",
 });
 //https://auth.nomoreparties.co

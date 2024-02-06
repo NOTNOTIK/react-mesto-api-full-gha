@@ -90,7 +90,7 @@ class Api {
 }
 
 const api = new Api({
-  url: "https://ikorka01.nomoredomainsmonster.ru",
+  url: "http://localhost:3000",
 });
 
 export default api;
