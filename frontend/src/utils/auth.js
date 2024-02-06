@@ -19,6 +19,7 @@ class Auth {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      mode: "no-cors",
       body: JSON.stringify({ email, password }),
     }).then(this._checkRes);
   }
@@ -30,6 +31,7 @@ class Auth {
         "Content-Type": "application/json",
         Authorization: `Bearer ${jwt}`,
       },
+      mode: "no-cors",
       body: JSON.stringify({ email, password }),
     }).then(this._checkRes);
   }
