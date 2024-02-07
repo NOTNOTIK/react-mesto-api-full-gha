@@ -74,7 +74,7 @@ class Api {
     }).then(this._getResponse);
   }
 
-  setLike(cardId) {
+  /* setLike(cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       headers: this._getHeaders(),
       method: "PUT",
@@ -85,6 +85,12 @@ class Api {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       headers: this._getHeaders(),
       method: "DELETE",
+    }).then(this._getResponse);
+  }*/
+  likeToggle(cardId, isLiked) {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
+      method: isLiked ? "DELETE" : "PUT",
+      headers: this._getHeaders(),
     }).then(this._getResponse);
   }
 }

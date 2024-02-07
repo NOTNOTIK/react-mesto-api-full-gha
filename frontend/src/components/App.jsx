@@ -95,6 +95,7 @@ function App() {
         setInfoTooltipImage(error);
       });
   }
+
   useEffect(() => {
     if (loggedIn) {
       Promise.all([api.getAllCards(), api.getUserApi()])
@@ -130,15 +131,13 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((item) => item._id === currentUser._id);
-    const checkLike = isLiked
-      ? api.deleteLike(card._id)
-      : api.setLike(card._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
 
-    checkLike
+    api
+      .likeToggle(card._id, isLiked, localStorage.jwt)
       .then((newCard) => {
-        setCards((cards) =>
-          cards.map((c) => (c._id === card._id ? newCard : c))
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
         );
       })
       .catch((err) => {
